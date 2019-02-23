@@ -11,6 +11,7 @@
     <uses-feature
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
