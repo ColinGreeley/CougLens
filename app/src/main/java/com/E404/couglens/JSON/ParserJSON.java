@@ -11,26 +11,38 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parses JSON files
+ */
+
 public class ParserJSON {
 
     private String fileLocation;
-    private String name;
+    private List<String> possibilities;
 
+    /**
+     * @param fileLocation
+     * Passes in file location to the file we want to parse
+     */
     public ParserJSON(String fileLocation) {
         this.fileLocation = fileLocation;
-        name = parseForObjectName();
+        this.possibilities = parseForObjectName();
     }
 
-    private String parseForObjectName() {
+    /**
+     * Parses through the file for the data
+     * @return
+     */
+    private List<String> parseForObjectName() {
         JsonParser parser = new JsonParser();
+
+        List<String> possibilities = new ArrayList<String>();
 
         try {
             FileReader reader = new FileReader(fileLocation);
             Object obj = parser.parse(reader);
 
             JSONArray list = (JSONArray) obj;
-
-            List<String> possibilities = new ArrayList<String>();
 
             for(int i = 0; i < list.length(); i++) {
                 try {
@@ -48,11 +60,6 @@ public class ParserJSON {
             e.printStackTrace();
         }
 
-        return fileLocation;
+        return possibilities;
     }
-
-    public String getName() {
-        return name;
-    }
-
 }
