@@ -22,10 +22,12 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own ", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Don't touch that ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+
+        //Button takePickture =  findViewById(R.id.Button1);
     }
 
     @Override
