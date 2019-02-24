@@ -34,7 +34,7 @@
             android:paddingBottom="10dp">
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/imageButton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/ic_launcher_round"
@@ -62,7 +62,7 @@
             android:paddingBottom="10dp">
 
             <ImageButton
-                android:id="@+id/imageButton6"
+                android:id="@+id/imageButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/ic_launcher"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content" />
 
             <ImageButton
-                android:id="@+id/imageButton5"
+                android:id="@+id/imageButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/ic_launcher"
@@ -88,7 +88,7 @@
             android:paddingBottom="10dp">
 
             <ImageButton
-                android:id="@+id/imageButton8"
+                android:id="@+id/imageButton5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/ic_launcher_round"
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content" />
 
             <ImageButton
-                android:id="@+id/imageButton7"
+                android:id="@+id/imageButton6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/ic_launcher_round"
@@ -109,7 +109,7 @@
     </TableLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
+        android:id="@+id/clearSearch"
         android:layout_width="wrap_content"
         android:layout_height="102dp"
         android:layout_marginStart="8dp"
