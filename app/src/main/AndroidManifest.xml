@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.E404.couglens">
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:required="true" />
@@ -14,6 +11,9 @@
         android:required="true" />
     <uses-permission
         android:name="android.permission.INTERNET"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera2.full"
         android:required="true" />
 
     <application
@@ -34,6 +34,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="com.E404.couglens.fileProvider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" ></meta-data>
+        </provider>
     </application>
 
 </manifest>

@@ -1,29 +1,31 @@
 package com.E404.couglens;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Camera;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraDevice;
+import android.hardware.camera2.CameraManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.util.SparseIntArray;
+import android.view.Surface;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ImageView;
-
-import com.E404.couglens.Clarifai.ClarifaiMain;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.security.spec.EncodedKeySpec;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import clarifai2.api.ClarifaiResponse;
@@ -32,9 +34,8 @@ import clarifai2.dto.prediction.Prediction;
 
 public class MainActivity extends AppCompatActivity {
 
-    ClarifaiResponse<List<ClarifaiOutput<Prediction>>> predictions;
-
-    private static final int RESULT_LOAD_IMAGE = 1;
+    private int RESULT_LOAD_IMAGE = 1;
+    private File imageFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,23 +43,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    static final int REQUEST_TAKE_PHOTO = 1;
+    //static final int REQUEST_TAKE_PHOTO = 1;
     public void openCamera(View view) {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = getTempFile(getApplicationContext(), "cougLens");
-            if(photoFile != null) {
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        imageFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "test.jpg");
+        Uri tempUri = Uri.fromFile(imageFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri);
+        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+        startActivityForResult(intent,1);
+    }
 
-                if (photoFile != null) {
-                    try {
-                        ClarifaiMain api = new ClarifaiMain(photoFile.getCanonicalPath());
-                        predictions = api.getPredictions();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 0) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    if(imageFile.exists()) {
+                        Toast.makeText(this, "The File was saved at " + imageFile.getAbsolutePath(), Toast.LENGTH_LONG).show();
                     }
-                }
+                    else {
+                        Toast.makeText(this, "There was an error saving the file", Toast.LENGTH_LONG).show();
+                    }
+                    break;
+                case Activity.RESULT_CANCELED:
+
+                    break;
+
+                default:
+                    break;
             }
         }
     }
@@ -70,14 +82,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private File getTempFile(Context context, String url) {
-        File file = null;
-        try {
-            String fileName = Uri.parse(url).getLastPathSegment();
-            file = File.createTempFile(fileName, ".jpg", context.getCacheDir());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return file;
-    }
+
 }
