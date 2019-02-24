@@ -1,5 +1,6 @@
 package com.E404.couglens;
 
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,5 +40,11 @@ public class MainActivity extends AppCompatActivity {
         if(galleryIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
         }
+    }
+
+
+    public void openRecent(View view) {
+       Intent recentIntent = new Intent(this, RecentSearchActivity.class);
+       startActivity(recentIntent);
     }
 }
