@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.E404.couglens">
 
+    <uses-feature
+        android:name="android.hardware.Camera"
+        android:required="true" />
+
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:required="true" />
@@ -12,8 +16,8 @@
     <uses-permission
         android:name="android.permission.INTERNET"
         android:required="true" />
-    <uses-feature
-        android:name="android.hardware.camera2.full"
+    <uses-permission
+        android:name="android.permission.CAMERA"
         android:required="true" />
 
     <application
@@ -24,6 +28,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".CameraActivity"
+            android:label="@string/title_activity_camera"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -36,13 +44,13 @@
         </activity>
 
         <provider
-            android:authorities="com.E404.couglens.fileProvider"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.E404.android.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" ></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

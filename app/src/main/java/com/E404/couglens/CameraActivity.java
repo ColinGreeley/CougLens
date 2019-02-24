@@ -1,14 +1,14 @@
 package com.E404.couglens;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 
-public class CameraActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class CameraActivity extends AppCompatActivity {
 
     @Override
-    public void onClick(View v) {
-        Log.d("CougLens", "Error");
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.setContentView(R.layout.activity_camera);
     }
 }
