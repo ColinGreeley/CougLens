@@ -12,9 +12,13 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:required="false" />
+<<<<<<< HEAD
     <uses-permission
         android:name="android.permission.INTERNET"
         android:required="true" />
+=======
+    <uses-permission android:name="android.permission.INTERNET" />
+>>>>>>> origin/colin
 
     <application
         android:allowBackup="true"
