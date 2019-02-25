@@ -18,7 +18,7 @@ public class ClarifaiMain {
     private ClarifaiResponse<List<ClarifaiOutput<Prediction>>> predictions;
 
     /**
-     * Pass in a File Path to the image to be sent to api
+     * Pass in a File Path to the image to be sent to api pull
      * @param filePath
      */
     public ClarifaiMain(String filePath) {
