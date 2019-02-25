@@ -13,7 +13,17 @@ import clarifai2.dto.model.output.ClarifaiOutput;
 import clarifai2.dto.prediction.Prediction;
 
 
-public class clarifaiMain {
+public class ClarifaiMain {
+
+    private ClarifaiResponse<List<ClarifaiOutput<Prediction>>> predictions;
+
+    /**
+     * Pass in a File Path to the image to be sent to api
+     * @param filePath
+     */
+    public ClarifaiMain(String filePath) {
+        predictions = getResponse(filePath);
+    }
 
     public ClarifaiResponse<List<ClarifaiOutput<Prediction>>> getResponse(String filePath) {
         final ClarifaiClient client = new ClarifaiBuilder("e4c27199fe5e46dfb0ff50f84d6ee033").buildSync();
@@ -27,5 +37,9 @@ public class clarifaiMain {
                 .executeSync();
 
         return response;
+    }
+
+    public ClarifaiResponse<List<ClarifaiOutput<Prediction>>> getPredictions() {
+        return predictions;
     }
 }
